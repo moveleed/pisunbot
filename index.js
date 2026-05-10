@@ -1,5 +1,6 @@
 import { Telegraf } from "telegraf";
 import 'dotenv/config'
+import http from 'http'
 
 const bot = new Telegraf(process.env.TOKEN)
 
@@ -61,3 +62,8 @@ bot.on('text', async (ctx) => {
 });
 
 bot.launch()
+
+http.createServer((req, res) => {
+  res.write('I am alive');
+  res.end();
+}).listen(process.env.PORT || 3000);
